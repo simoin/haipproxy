@@ -1,4 +1,4 @@
-FROM vaeum/alpine-python3-pip3
+FROM ubuntu:16.04
 LABEL mantainer="simoin <lfzeng34@gmail.com>"
 
 ENV LC_ALL C.UTF-8
