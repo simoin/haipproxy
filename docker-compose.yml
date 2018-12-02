@@ -4,17 +4,20 @@ services:
     image: redis:alpine
     ports:
       - "6381:6379"
+    volumes:
+      - /F/docker/redis-haipproxy:/data
     command: >
-      --requirepass 123456
+      --requirepass 123456 --appendonly yes
+
   splash:
     image: scrapinghub/splash
     ports:
-      - "8083:8050"
+      - "8084:8050"
   haipproxy:
-    image: simoon/haipproxy
+    image: daocloud.io/hehe11/haipproxy:latest
     command: sh run.sh
     ports:
-      - "8084:3128"
+      - "8085:3128"
     depends_on:
       - redis
       - splash
