@@ -8,11 +8,11 @@ from ..redis_spiders import ValidatorRedisSpider
 from .base import BaseValidator
 
 
-class ZhiHuValidator(BaseValidator, ValidatorRedisSpider):
+class Acg18Validator(BaseValidator, ValidatorRedisSpider):
     """This validator check the liveness of zhihu proxy resources"""
     name = 'acg18'
     urls = [
-        'https://acg18.us/'
+        'https://acg18.us/category/music'
     ]
     task_queue = TEMP_ACG18_QUEUE
     score_queue = VALIDATED_ACG18_QUEUE
