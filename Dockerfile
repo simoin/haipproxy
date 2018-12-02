@@ -8,7 +8,7 @@ RUN sed -i 's/http_access deny all/http_access allow all/g' /etc/squid/squid.con
 RUN cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
 RUN apk add --no-cache python3 python3-dev \
   && pip3 install --upgrade pip setuptools
-
+RUN which python3|xargs -i ln -s {} /usr/bin/python
 WORKDIR /haipproxy
 COPY . /haipproxy
 
