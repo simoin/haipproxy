@@ -5,7 +5,7 @@ MAINTAINER ResolveWang <resolvewang@foxmail.com>
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 RUN apt update
-RUN apt install libssl-dev squid -yq
+RUN apt install libssl-dev libffi-dev squid -yq
 RUN sed -i 's/http_access deny all/http_access allow all/g' /etc/squid/squid.conf
 RUN cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
 RUN apt install python3 python3-pip -yq
