@@ -14,5 +14,5 @@ RUN which pip3|xargs -i ln -s {} /usr/bin/pip
 WORKDIR /haipproxy
 ADD . /haipproxy
 
-RUN pip install -i https://pypi.douban.com/simple/ -r requirements.txt
+RUN pip install -r requirements.txt
 CMD ['python', 'crawler_booter.py', '--usage', 'crawler', 'common']
