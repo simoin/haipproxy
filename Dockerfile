@@ -12,7 +12,7 @@ RUN apt install python3 python3-pip -yq
 RUN which python3|xargs -i ln -s {} /usr/bin/python
 RUN which pip3|xargs -i ln -s {} /usr/bin/pip
 WORKDIR /haipproxy
-ADD . /haipproxy
+COPY . /haipproxy
 
 RUN pip install -r requirements.txt
 CMD ['python', 'crawler_booter.py', '--usage', 'crawler', 'common']
