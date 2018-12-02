@@ -1,4 +1,4 @@
-# the code is partially copied from https://github.com/windcode/zhihu-crawler-people
+# the code is some copied from https://github.com/windcode/zhihu-crawler-people
 
 import json
 import time
@@ -6,7 +6,7 @@ from multiprocessing import Pool
 
 from bs4 import BeautifulSoup as BS
 
-from haipproxy.utils import get_redis_conn
+from utils import get_redis_conn
 from examples.zhihu.crawler import Crawler
 
 per_page = 20
@@ -97,11 +97,10 @@ def get_followers(url_token, follower_count):
 def start():
     redis_client = init_db()
     while not redis_client.scard(waiting_set):
-        # block if there is no seed in waiting_set
-        print('no seeds in waiting set {}'.format(waiting_set))
+        # block if there is no seed in waitting_set
         time.sleep(0.1)
 
-    # fetch seeds from waiting_set
+    # fetch seeds from waitting_set
     url_token = redis_client.spop(waiting_set).decode()
 
     print("crawling %s's user info……" % url_token)
@@ -113,17 +112,16 @@ def start():
     except (TypeError, AttributeError):
         return
 
+    push_success_num = 0
     for follower in follower_list:
         if not redis_client.sismember(seeds_all, follower):
-            pipe = redis_client.pipeline(False)
-            pipe.sadd(waiting_set, follower)
-            pipe.sadd(seeds_all, follower)
-            pipe.execute()
-    print("user {}'s info has being crawled".format(url_token))
+            redis_client.sadd(waiting_set, follower)
+            redis_client.sadd(seeds_all, follower)
+            push_success_num += 1
 
 
 if __name__ == '__main__':
-    init_seeds = ['resolvewang', 'excited-vczh']
+    init_seeds = ['excited-vczh', 'resolvewang']
     redis_conn = init_db()
     redis_conn.sadd(waiting_set, *init_seeds)
     redis_conn.sadd(seeds_all, *init_seeds)

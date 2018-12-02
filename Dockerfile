@@ -1,5 +1,6 @@
 FROM ubuntu:16.04
-LABEL mantainer="simoin <lfzeng34@gmail.com>"
+
+MAINTAINER ResolveWang <resolvewang@foxmail.com>
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
@@ -13,5 +14,5 @@ RUN which pip3|xargs -i ln -s {} /usr/bin/pip
 WORKDIR /haipproxy
 ADD . /haipproxy
 
-RUN pip3 install -i https://pypi.douban.com/simple/ -U pip && pip3 install -i https://pypi.douban.com/simple/ -r requirements.txt
+RUN pip install -i https://pypi.douban.com/simple/ -r requirements.txt
 CMD ['python', 'crawler_booter.py', '--usage', 'crawler', 'common']
