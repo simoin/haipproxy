@@ -14,5 +14,5 @@ RUN apk add --no-cache python3-dev \
 WORKDIR /haipproxy
 COPY . /haipproxy
 
-RUN pip install -i https://pypi.douban.com/simple/ -r requirements.txt
+RUN pip install -r requirements.txt
 # CMD ['python', 'crawler_booter.py', '--usage', 'crawler', 'common']
