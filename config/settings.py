@@ -51,7 +51,7 @@ LOG_FILE = 'logs/haipproxy.log'
 # Custom settings of this project
 #####################################################################
 # redis settings.If you use docker-compose, REDIS_HOST = 'redis'
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_PASSWORD = '123456'
 DEFAULT_REDIS_DB = 0
