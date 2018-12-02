@@ -1,14 +1,11 @@
-FROM ubuntu:16.04
+FROM alpine
 
-MAINTAINER ResolveWang <resolvewang@foxmail.com>
+LABEL maintainer="simoin <lfzeng34@gmail.com>"
 
-ENV LC_ALL C.UTF-8
-ENV LANG C.UTF-8
-RUN apt update
-RUN apt install libssl-dev libffi-dev squid -yq
+RUN apk update && apk add gcc libressl-dev libffi-dev musl-dev libxslt-dev squid
 RUN sed -i 's/http_access deny all/http_access allow all/g' /etc/squid/squid.conf
 RUN cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
-RUN apt install python3 python3-pip -yq
+RUN apk install python3 python3-pip
 RUN which python3|xargs -i ln -s {} /usr/bin/python
 RUN which pip3|xargs -i ln -s {} /usr/bin/pip
 WORKDIR /haipproxy
