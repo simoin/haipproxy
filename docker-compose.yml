@@ -14,7 +14,7 @@ services:
     ports:
       - "8084:8050"
   haipproxy:
-    image: daocloud.io/hehe11/haipproxy:latest
+    image: daocloud.io/hehe11/haipproxy:new_site-17d6c16
     command: sh run.sh
     ports:
       - "8085:3128"
