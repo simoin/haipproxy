@@ -10,7 +10,6 @@ from config.settings import (
     TEMP_WEIBO_QUEUE, VALIDATED_WEIBO_QUEUE, TTL_WEIBO_QUEUE, SPEED_WEIBO_QUEUE,
     TEMP_ZHIHU_QUEUE, VALIDATED_ZHIHU_QUEUE, TTL_ZHIHU_QUEUE, SPEED_ZHIHU_QUEUE,
     TEMP_ACG18_QUEUE, VALIDATED_ACG18_QUEUE, TTL_ACG18_QUEUE, SPEED_ACG18_QUEUE,
-    TEMP_PIXIV_QUEUE, VALIDATED_PIXIV_QUEUE, TTL_PIXIV_QUEUE, SPEED_PIXIV_QUEUE,
     TEMP_KONACHAN_QUEUE, VALIDATED_KONACHAN_QUEUE, TTL_KONACHAN_QUEUE, SPEED_KONACHAN_QUEUE)
 
 __all__ = ['CRWALER_TASKS', 'VALIDATOR_TASKS', 'CRAWLER_TASK_MAPS',
@@ -372,13 +371,6 @@ VALIDATOR_TASKS = [
         'enable': 1,
     },
     {
-        'name': 'pixiv',
-        'task_queue': TEMP_PIXIV_QUEUE,
-        'resource': VALIDATED_PIXIV_QUEUE,
-        'internal': 20,
-        'enable': 1,
-    },
-    {
         'name': 'konachan',
         'task_queue': TEMP_KONACHAN_QUEUE,
         'resource': VALIDATED_KONACHAN_QUEUE,
@@ -403,7 +395,6 @@ TEMP_TASK_MAPS = {
     'weibo': TEMP_WEIBO_QUEUE,
     'zhihu': TEMP_ZHIHU_QUEUE,
     'acg18': TEMP_ACG18_QUEUE,
-    'pixiv': TEMP_PIXIV_QUEUE,
     'konachan': TEMP_KONACHAN_QUEUE
 }
 
@@ -415,7 +406,6 @@ SCORE_MAPS = {
     'weibo': VALIDATED_WEIBO_QUEUE,
     'zhihu': VALIDATED_ZHIHU_QUEUE,
     'acg18': VALIDATED_ACG18_QUEUE,
-    'pixiv': VALIDATED_PIXIV_QUEUE,
     'konachan': VALIDATED_KONACHAN_QUEUE,
 }
 
@@ -426,7 +416,6 @@ TTL_MAPS = {
     'weibo': TTL_WEIBO_QUEUE,
     'zhihu': TTL_ZHIHU_QUEUE,
     'acg18': TTL_ACG18_QUEUE,
-    'pixiv': TTL_PIXIV_QUEUE,
     'konachan': TTL_KONACHAN_QUEUE,
 }
 
@@ -436,6 +425,5 @@ SPEED_MAPS = {
     'weibo': SPEED_WEIBO_QUEUE,
     'zhihu': SPEED_ZHIHU_QUEUE,
     'acg18': SPEED_ACG18_QUEUE,
-    'pixiv': SPEED_PIXIV_QUEUE,
     'konachan': SPEED_KONACHAN_QUEUE
 }
