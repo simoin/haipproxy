@@ -3,23 +3,18 @@ Spider rules.Scheduler will provide crawling tasks according to the rules and
 spiders will parse response content according to the rules.
 """
 from config.settings import (
-    SPIDER_COMMON_TASK, SPIDER_AJAX_TASK,
-    SPIDER_GFW_TASK, SPIDER_AJAX_GFW_TASK,
-    INIT_HTTP_QUEUE, VALIDATED_HTTP_QUEUE,
-    VALIDATED_HTTPS_QUEUE, TEMP_HTTP_QUEUE,
-    TEMP_HTTPS_QUEUE, TTL_HTTP_QUEUE,
-    TTL_HTTPS_QUEUE, SPEED_HTTPS_QUEUE,
-    SPEED_HTTP_QUEUE, TEMP_WEIBO_QUEUE,
-    VALIDATED_WEIBO_QUEUE, TTL_WEIBO_QUEUE,
-    SPEED_WEIBO_QUEUE, TEMP_ZHIHU_QUEUE,
-    VALIDATED_ZHIHU_QUEUE, TTL_ZHIHU_QUEUE,
-    SPEED_ZHIHU_QUEUE)
-
+    SPIDER_COMMON_TASK, SPIDER_AJAX_TASK, SPIDER_GFW_TASK, SPIDER_AJAX_GFW_TASK,
+    INIT_HTTP_QUEUE,
+    TEMP_HTTP_QUEUE, VALIDATED_HTTP_QUEUE, TTL_HTTP_QUEUE, SPEED_HTTP_QUEUE,
+    TEMP_HTTPS_QUEUE, VALIDATED_HTTPS_QUEUE, TTL_HTTPS_QUEUE, SPEED_HTTPS_QUEUE,
+    TEMP_WEIBO_QUEUE, VALIDATED_WEIBO_QUEUE, TTL_WEIBO_QUEUE, SPEED_WEIBO_QUEUE,
+    TEMP_ZHIHU_QUEUE, VALIDATED_ZHIHU_QUEUE, TTL_ZHIHU_QUEUE, SPEED_ZHIHU_QUEUE,
+    TEMP_ACG18_QUEUE, VALIDATED_ACG18_QUEUE, TTL_ACG18_QUEUE, SPEED_ACG18_QUEUE,
+    TEMP_KONACHAN_QUEUE, VALIDATED_KONACHAN_QUEUE, TTL_KONACHAN_QUEUE, SPEED_KONACHAN_QUEUE)
 
 __all__ = ['CRWALER_TASKS', 'VALIDATOR_TASKS', 'CRAWLER_TASK_MAPS',
            'TEMP_TASK_MAPS', 'SCORE_MAPS', 'TTL_MAPS',
            'SPEED_MAPS']
-
 
 CRWALER_TASKS = [
     {
@@ -338,7 +333,6 @@ CRWALER_TASKS = [
     },
 ]
 
-
 # validator scheduler will fetch tasks from task queue and store into resource
 VALIDATOR_TASKS = [
     {
@@ -369,6 +363,20 @@ VALIDATOR_TASKS = [
         'internal': 20,
         'enable': 1,
     },
+    {
+        'name': 'acg18',
+        'task_queue': TEMP_ACG18_QUEUE,
+        'resource': VALIDATED_ACG18_QUEUE,
+        'internal': 20,
+        'enable': 1,
+    },
+    {
+        'name': 'konachan',
+        'task_queue': TEMP_KONACHAN_QUEUE,
+        'resource': VALIDATED_KONACHAN_QUEUE,
+        'internal': 20,
+        'enable': 1,
+    },
 ]
 
 # crawlers will fetch tasks from the following queues
@@ -385,9 +393,10 @@ TEMP_TASK_MAPS = {
     'http': TEMP_HTTP_QUEUE,
     'https': TEMP_HTTPS_QUEUE,
     'weibo': TEMP_WEIBO_QUEUE,
-    'zhihu': TEMP_ZHIHU_QUEUE
+    'zhihu': TEMP_ZHIHU_QUEUE,
+    'acg18': TEMP_ACG18_QUEUE,
+    'konachan': TEMP_KONACHAN_QUEUE
 }
-
 
 # todo the three maps may be combined in one map
 # validator scheduler and clients will fetch proxies from the following queues
@@ -395,7 +404,9 @@ SCORE_MAPS = {
     'http': VALIDATED_HTTP_QUEUE,
     'https': VALIDATED_HTTPS_QUEUE,
     'weibo': VALIDATED_WEIBO_QUEUE,
-    'zhihu': VALIDATED_ZHIHU_QUEUE
+    'zhihu': VALIDATED_ZHIHU_QUEUE,
+    'acg18': VALIDATED_ACG18_QUEUE,
+    'konachan': VALIDATED_KONACHAN_QUEUE,
 }
 
 # validator scheduler and clients will fetch proxies from the following queues which are verified recently
@@ -403,13 +414,16 @@ TTL_MAPS = {
     'http': TTL_HTTP_QUEUE,
     'https': TTL_HTTPS_QUEUE,
     'weibo': TTL_WEIBO_QUEUE,
-    'zhihu': TTL_ZHIHU_QUEUE
+    'zhihu': TTL_ZHIHU_QUEUE,
+    'acg18': TTL_ACG18_QUEUE,
+    'konachan': TTL_KONACHAN_QUEUE,
 }
 
 SPEED_MAPS = {
     'http': SPEED_HTTP_QUEUE,
     'https': SPEED_HTTPS_QUEUE,
     'weibo': SPEED_WEIBO_QUEUE,
-    'zhihu': SPEED_ZHIHU_QUEUE
+    'zhihu': SPEED_ZHIHU_QUEUE,
+    'acg18': SPEED_ACG18_QUEUE,
+    'konachan': SPEED_KONACHAN_QUEUE
 }
-

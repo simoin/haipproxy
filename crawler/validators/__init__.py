@@ -15,10 +15,12 @@ from .httpbin import (
     HttpsValidator)
 from .zhihu import ZhiHuValidator
 from .weibo import WeiBoValidator
+from .acg18 import Acg18Validator
+from .konachan import KonachanValidator
 
 
 all_validators = [
     HttpBinInitValidator, HttpValidator,
     HttpsValidator, WeiBoValidator,
-    ZhiHuValidator
+    ZhiHuValidator, Acg18Validator, KonachanValidator
 ]
